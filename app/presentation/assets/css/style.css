@@ -1,0 +1,73 @@
+.home-container {
+    width: 70%;
+    margin: auto;
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.home-title {
+    color: #000;
+    font-weight: bold;
+    font-size: 3.6rem; 
+    margin-bottom: 0 !important;
+    line-height: 3.6rem;
+}
+.home-subtitle {
+    color: #000;
+    font-size: 1.5rem;
+}
+
+.drama-container {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    border: 2px solid #000;
+    padding: 15px;
+}
+.drama-title {
+    color: #000;
+    font-weight: bold;
+    font-size: 1.5rem; 
+}
+.drama-tag {
+    background-color: #E4D0D5;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.black-btn {
+    background-color: #000;
+    color:#FFF;
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 1.6rem;
+    width: 47%;
+}
+.black-outline-btn {
+    background-color: #FFF;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 1.6rem;
+    width: 47%;
+}
+
+.side-navbar {
+    width: 100%;
+    height: 100%;
+    background-color: #F2F6EF;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.drama-bg {
+    background-color: #FFD9D9;
+    background-image: linear-gradient(180deg, #FFD9D9 0%, #DBFBEF 83%);
+}
