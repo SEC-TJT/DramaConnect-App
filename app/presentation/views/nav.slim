@@ -1,21 +1,18 @@
-nav role="navigation" class="side-navbar"
-  div class="container-fluid"
-    a class="navbar-brand" rel="home" href="/" title="Securely Share Configurations"
-        img alt="DramaConnect" src="/logo.png" style="max-width:35px; margin-top: -7px;"
-    a class="navbar-brand" href="/" DramaConnect
-    button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"
-      span class="navbar-toggler-icon"
-
-    div class="collapse navbar-collapse" id="mainNavbar"
-      ul class="navbar-nav me-auto"
-        - if @current_account
-          li class="nav-item"
-            a class="nav-link disabled" href="/" Share Your Link
-          li class="nav-item dropdown"
-            a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
-              = "#{@current_account['username']}"
-
-            div class=-"dropdown-menu"
-              a class="dropdown-item" href="/account/#{@current_account['username']}" account
-              a class="dropdown-item" href='/auth/logout' logout
-        
+nav role="navigation" class="side-navbar nav-container"
+  div class="avator-box"
+  - if @current_account
+    div class="nav-title" 
+      = "#{@current_account['username']}"
+    div class="nav-subtitle"
+      = "#{@current_account['email']}"
+  div class="nav-intro" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+  a class="btn-common white-btn shadow nav-btn d-flex justify-content-between align-items-center" href="/"
+    div Share Your Link
+    i class="fa-solid fa-share-nodes"
+  a class="btn-common white-btn shadow nav-btn d-flex justify-content-between align-items-center" href='/auth/logout'
+    div Logout
+    i class="fa-solid fa-right-from-bracket"
+  
+  div class="brand-container"
+    img alt="DramaConnect" src="/logo.png" style="width:46px; height:40px;"
+    div DramaConnect@2023

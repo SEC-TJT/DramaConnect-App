@@ -23,7 +23,7 @@ module DramaConnect
 
           session[:current_account] = account
           flash[:notice] = "Welcome back #{account['username']}!"
-          routing.redirect '/'
+          routing.redirect "/account/#{account['username']}"
         rescue StandardError
           flash.now[:error] = 'Username and password did not match our records'
           response.status = 400
