@@ -1,0 +1,18 @@
+- if flash[:error]
+  javascript:
+    notification.notify('error', "#{flash[:error]}", {
+      notification: {
+        position: ['left', 'top'],
+        roundCorners: [10, 10, 10, 10],
+        autoHide: 20
+      }
+    });
+- if flash[:notice]
+  javascript:
+    notification.notify('success', "#{flash[:notice]}", {
+      notification: {
+        position: ['left', 'top'],
+        roundCorners: [10, 10, 10, 10],
+        autoHide: 20
+      }
+    });

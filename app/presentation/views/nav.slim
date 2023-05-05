@@ -1,0 +1,18 @@
+nav role="navigation" class="side-navbar nav-container"
+  div class="avator-box"
+  - if @current_account
+    div class="nav-title" 
+      = "#{@current_account['username']}"
+    div class="nav-subtitle"
+      = "#{@current_account['email']}"
+  div class="nav-intro" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+  a class="btn-common white-btn shadow nav-btn d-flex justify-content-between align-items-center" href="/"
+    div Share Your Link
+    i class="fa-solid fa-share-nodes"
+  a class="btn-common white-btn shadow nav-btn d-flex justify-content-between align-items-center" href='/auth/logout'
+    div Logout
+    i class="fa-solid fa-right-from-bracket"
+  
+  div class="brand-container"
+    img alt="DramaConnect" src="/logo.png" style="width:46px; height:40px;"
+    div DramaConnect@2023
