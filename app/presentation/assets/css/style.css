@@ -105,7 +105,9 @@
     justify-content: space-around;
 }
 .form-group > label {
-    width: fit-content;
+    /* width: fit-content; */
+    min-width: fit-content;
+    width: 30%;
     margin: 10px;
     font-size: 1.2rem;
     font-weight: bold;

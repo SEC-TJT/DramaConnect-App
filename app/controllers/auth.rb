@@ -16,6 +16,7 @@ module DramaConnect
 
         # POST /auth/login
         routing.post do
+          
           account = AuthenticateAccount.new(App.config).call(
             username: routing.params['username'],
             password: routing.params['password']
@@ -25,6 +26,7 @@ module DramaConnect
           flash[:notice] = "Welcome back #{account['username']}!"
           routing.redirect "/account/#{account['username']}"
         rescue StandardError
+          print App.config.API_HOST
           flash.now[:error] = 'Username and password did not match our records'
           response.status = 400
           view :login
@@ -35,6 +37,25 @@ module DramaConnect
         routing.get do
           session[:current_account] = nil
           routing.redirect @login_route
+        end
+      end
+      @register_route = '/auth/register'
+      routing.is 'register' do
+        routing.get do
+          view:register
+        end
+        routing.post do
+          account_data = routing.params.transform_keys(&:to_sym)
+          print account_data
+          print App.config.API_HOST
+          CreateAccount.new(App.config).call(**account_data)
+          flash[:notice] = 'Please login with your new account information'
+          routing.redirect @login_route
+        rescue StandardError => e
+          App.logger.info "FAILED to create account: #{e.inspect}"
+          App.logger.error e.backtrace
+          flash[:error] = 'Failed to create account'
+          routing.redirect @register_route
         end
       end
     end
