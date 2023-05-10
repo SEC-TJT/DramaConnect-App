@@ -1,3 +1,19 @@
+GIT
+  remote: https://github.com/PikachuEXE/redis-store
+  revision: c395440c3a846657697999ef0c9345037991e7aa
+  branch: fix/redis-client-compatibility
+  specs:
+    redis-store (1.9.2)
+      redis (>= 4, < 6)
+
+GIT
+  remote: https://github.com/redis-store/redis-rack
+  revision: 15e12b33d222fe9e02f6dd030f974b95ef8df2e1
+  specs:
+    redis-rack (2.1.4)
+      rack-session (>= 0.2.0)
+      redis-store (>= 1.2, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -5,6 +21,9 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     coderay (1.1.3)
+    connection_pool (2.4.0)
+    crack (0.4.5)
+      rexml
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     ffi (1.15.5)
@@ -13,6 +32,7 @@ GEM
       rake
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
+    hashdiff (1.0.1)
     http (5.1.1)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
@@ -29,6 +49,9 @@ GEM
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
     method_source (1.0.0)
+    minitest (5.18.0)
+    minitest-rg (5.2.0)
+      minitest (~> 5.0)
     nio4r (2.5.9)
     parallel (1.23.0)
     parser (3.2.2.1)
@@ -42,6 +65,7 @@ GEM
     rack (3.0.7)
     rack-session (2.0.0)
       rack (>= 3.0.0)
+    rack-ssl-enforcer (0.2.9)
     rack-test (2.1.0)
       rack (>= 1.3)
     rainbow (3.1.1)
@@ -51,6 +75,10 @@ GEM
       ffi (~> 1.0)
     rbnacl (7.1.1)
       ffi
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
+    redis-client (0.14.1)
+      connection_pool
     regexp_parser (2.8.0)
     rerun (0.14.0)
       listen (~> 3.0)
@@ -67,7 +95,7 @@ GEM
       rubocop-ast (>= 1.28.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.28.0)
+    rubocop-ast (1.28.1)
       parser (>= 3.2.1.0)
     rubocop-performance (1.17.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -83,24 +111,38 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.4.2)
+    webmock (3.18.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
-  figaro
-  http
+  figaro (~> 1.2)
+  http (~> 5.1)
+  minitest
+  minitest-rg
   pry
-  puma
-  rack-session
+  puma (~> 6.0)
+  rack-session (~> 2.0)
+  rack-ssl-enforcer
   rack-test
-  rake
-  rbnacl
+  rake (~> 13.0)
+  rbnacl (~> 7.1)
+  redis (~> 5.0)
+  redis-rack!
+  redis-store!
   rerun
-  roda
+  roda (~> 3.54)
   rubocop
   rubocop-performance
   slim
+  webmock
+
+RUBY VERSION
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.12
