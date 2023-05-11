@@ -6,7 +6,7 @@ require 'figaro'
 require 'logger'
 require 'rack/ssl-enforcer'
 require 'rack/session'
-# require 'rack/session/redis'
+require 'rack/session/redis'
 require_relative '../require_app'
 
 require_app('lib')
@@ -29,7 +29,7 @@ module DramaConnect
     def self.logger = LOGGER
 
     ONE_MONTH = 30 * 24 * 60 * 60
-    
+
     configure do
       SecureMessage.setup(ENV.delete('MSG_KEY'))
     end
