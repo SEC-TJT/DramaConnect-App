@@ -21,8 +21,7 @@ module DramaConnect
             username: routing.params['username'],
             password: routing.params['password']
           )
-          current_account = Account.new(account_info[:account_info],account_info[:auth_token])
-
+          current_account = Account.new(account_info['account'],account_info['auth_token'])
           # SecureSession.new(session).set(:current_account, account)
           CurrentSession.new(session).current_account = current_account
           flash[:notice] = "Welcome back #{current_account.username}!"
@@ -45,8 +44,8 @@ module DramaConnect
         # GET /auth/logout
         routing.get do
           # SecureSession.new(session).delete(:current_account)
-          flash[:notice] = "You've been logged out"
           CurrentSession.new(session).delete
+          flash[:notice] = "You've been logged out"
           routing.redirect @login_route
         end
       end

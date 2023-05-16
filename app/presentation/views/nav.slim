@@ -2,9 +2,9 @@ nav role="navigation" class="side-navbar nav-container"
   div class="avator-box"
   - if @current_account
     div class="nav-title" 
-      = "#{@current_account['username']}"
+      = "#{@current_account.username}"
     div class="nav-subtitle"
-      = "#{@current_account['email']}"
+      = "#{@current_account.email}"
   div class="nav-intro" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
   a class="btn-common white-btn shadow nav-btn d-flex justify-content-between align-items-center" href="/"
     div Share Your Link
