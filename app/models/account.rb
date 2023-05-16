@@ -1,27 +1,26 @@
 module DramaConnect
   class Account
-   
-      def initialize(account_info,auth_token)
-        @account_info = account_info
-        @auth_token = auth_token
-      end
-      attr_reader :account_info, :auth_token
+    def initialize(account_info, auth_token)
+      @account_info = account_info
+      @auth_token = auth_token
+    end
 
-      def username
-        @account_info['username']? @account_info['username'] : nil
-      end
+    attr_reader :account_info, :auth_token
 
-      def email
-        @account_info['email']? @account_info['email'] : nil
-      end
+    def username
+      @account_info ? @account_info['attributes']['username'] : nil
+    end
 
-      def logged_out?
-        @account_info.nil?
-      end
+    def email
+      @account_info ? @account_info['attributes']['email'] : nil
+    end
 
-      def logged_in?
-        !logged_out?
-      end
-   
+    def logged_out?
+      @account_info.nil?
+    end
+
+    def logged_in?
+      !logged_out?
+    end
   end
 end

@@ -27,6 +27,7 @@ module DramaConnect
         CreateAccount.new(App.config).call(
           email: new_account['email'],
           username: new_account['username'],
+          name: new_account['name'],
           password: routing.params['password']
         )
         flash[:notice] = 'Account created! Please login'
