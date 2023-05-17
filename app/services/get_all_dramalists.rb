@@ -6,9 +6,10 @@ module DramaConnect
       @config = config
     end
 
-    def call
+    def call(current_account)
       response = HTTP.auth("Bearer #{current_account.auth_token}")
-                     .get("#{@config['API_HOST']}/dramalists")
+                     .get("#{@config.API_URL}/dramaList")
+
       response.code == 200?JSON.parse(response.to_s)['data']:nil
 
     end
