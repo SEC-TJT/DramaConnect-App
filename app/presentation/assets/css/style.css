@@ -120,10 +120,24 @@
     width: 100%;
     justify-content: space-around;
 }
+.re-label {
+    display: flex;
+    flex-wrap: nowrap;
+    min-width: 100%;
+    justify-content: space-around;
+    width: 50%;
+    margin: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid #000;
+    border-radius: 10px; 
+    line-height: 2.4rem;
+    padding: 5px 20px;
+}
 .form-group > label {
     /* width: fit-content; */
     min-width: fit-content;
-    width: 30%;
+    width: 40%;
     margin: 10px;
     font-size: 1.2rem;
     font-weight: bold;
@@ -135,7 +149,7 @@
 .form-group > input {
     background-color: #FFF;
     color: #000;
-    width: 70%;
+    width: 100%;
     margin: 10px;
     font-size: 1.2rem;
     font-weight: bold;
@@ -144,6 +158,7 @@
     line-height: 2.4rem;
     padding: 5px 20px;
 }
+
 
 .nav-container {
     display: flex;
