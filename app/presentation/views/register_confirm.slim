@@ -8,35 +8,37 @@ div class="home-container"
   form action="/account/#{registration_token}" method='post' id='user-form'
     div class="shadow-sm drama-container w-100" style="padding: 50px;"
         div class="container"    
-            div class="row g-2"
-              div class="col-md-auto"
-                div class="form-group"
-                    label Username 
-              div class="col-md-auto"
-                div class="form-group"
-                    label == new_account['username']
+            div class="row g-4"
+              div class="col-md-3"
+                div class="re-label" Username 
+              div class="col-md-9"
+                div class="re-label" == new_account['username']
         div class="container"    
-            div class="row g-2"
-              div class="col-md-auto"
-                div class="form-group"
-                    label Name
-              div class="col-md-auto"
-                div class="form-group"
-                    label == new_account['name']
+            div class="row g-4"
+              div class="col-md-3"
+                  div class="re-label" Name
+              div class="col-md-9"
+                  div class="re-label" == new_account['name']
         div class="container"    
-            div class="row g-2"
-              div class="col-md-auto"
+            div class="row g-4"
+              div class="col-md-3"
+                  div class="re-label" Email
+              div class="col-md-9"
+                  div class="re-label" == new_account['email']
+        div class="container"
+            div class="row g-4"
+              div class="col-md-3"
+                div class="re-label" Password
+              div class="col"
                 div class="form-group"
-                    label Email
+                    input type='password' name='password' id='input-password' class="form-control"
+        div class="container"
+            div class="row g-4"
               div class="col-md-auto"
+                div class="re-label" Re-enter Password
+              div class="col"
                 div class="form-group"
-                    label == new_account['email']
-        div class="form-group"
-            label for='input-password' Password
-            input type='password' name='password' id='input-password' class="form-control"
-        div class="form-group"
-            label for='input-password' Re-enter Password
-            input type='password' name='password_confirm' id='input-password-confirm' class="form-control"
+                    input type='password' name='password_confirm' id='input-password-confirm' class="form-control"
 
     div class="w-100 d-flex justify-content-between align-items-center"
         button type='submit' id='button-login' value='login' class="btn-common gradient-btn shadow-sm mt-4" Submit
