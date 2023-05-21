@@ -1,4 +1,17 @@
 div class="w-100 d-flex flex-column justify-content-center align-items-center mb-3"
+  div class="menu d-flex flex-row justify-content-center align-items-center"
+    - (url ||= '') << "/account/" << @current_account.username
+    a href="#{url}" class="menu-item active d-flex align-items-center"
+      i class="fa-solid fa-house"
+      p class="m-2" Home
+    div class="black-bar"
+    a href='\'  class="menu-item d-flex align-items-center"
+      i class="fa-solid fa-user-group"
+      p class="m-2" Shared
+    div class="black-bar"
+    a href='\'  class="menu-item d-flex align-items-center"
+      i class="fa-solid fa-globe"
+      p class="m-2" Public
   div class="shadow-sm drama-container w-100" 
     a class="drama-link" href="accout/DD/dramas/id" 
     div class="d-flex w-100"
