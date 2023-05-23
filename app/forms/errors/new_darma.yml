@@ -1,0 +1,5 @@
+en:
+  errors:
+    name: 'Drama name must be filled'
+    rate: 'Rate must be filled'
+    review: 'Review must be filled'
