@@ -2,12 +2,12 @@
 
 require_relative 'form_base'
 
-module DrammaConnet
+module DramaConnect
   module Form
     class VisitorEmail < Dry::Validation::Contract
        config.messages.load_paths << File.join(__dir__, 'errors/account_details.yml')
        params do 
-        required(:email).filled(format? :EMAIL_REGEX)
+        required(:email).filled(format?: EMAIL_REGEX)
        end
     end
   end

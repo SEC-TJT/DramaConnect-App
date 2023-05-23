@@ -17,11 +17,25 @@ module DramaConnect
         # POST /auth/login
         routing.post do
 
-          account_info = AuthenticateAccount.new(App.config).call(
-            username: routing.params['username'],
-            password: routing.params['password']
+          credentials = Form::LoginCredentials.new.call(routing.params)
+
+          if credentials.failure?
+            flash[:error] = 'Please enter both username and password'
+            routing.redirect @login_route
+          end
+          authenticated = AuthenticateAccount.new(App.config)
+            .call(**credentials.values)
+           current_account = Account.new(
+            authenticated[:account],
+            authenticated[:auth_token]
           )
-          current_account = Account.new(account_info['account'],account_info['auth_token'])
+
+
+          # account_info = AuthenticateAccount.new(App.config).call(
+          #   username: routing.params['username'],
+          #   password: routing.params['password']
+          # )
+          # current_account = Account.new(account_info['account'],account_info['auth_token'])
           # SecureSession.new(session).set(:current_account, account)
           CurrentSession.new(session).current_account = current_account
           flash[:notice] = "Welcome back #{current_account.username}!"
@@ -51,30 +65,27 @@ module DramaConnect
       end
 
       @register_route = '/auth/register'
-      # routing.is 'register' do
-      #   routing.get do
-      #     view:register
-      #   end
       routing.on 'register' do
         routing.is do
           # GET /auth/register
           routing.get do
             view :register
           end
-        # routing.post do
-        #   account_data = routing.params.transform_keys(&:to_sym)
-        #   CreateAccount.new(App.config).call(**account_data)
           # POST /auth/register
           routing.post do
-            account_data = routing.params.transform_keys(&:to_sym)
-            VerifyRegistration.new(App.config).call(account_data)
-        #   flash[:notice] = 'Please login with your new account information'
-        #   routing.redirect @login_route
-        # rescue StandardError => e
-        #   App.logger.info "FAILED to create account: #{e.inspect}"
-        #   App.logger.error e.backtrace
-        #   flash[:error] = 'Failed to create account'
-        #   routing.redirect @register_route
+            puts "Hi2"
+            
+            registration = Form::Registration.new.call(routing.params)
+            puts "Hi"
+            puts registration.failure?
+            if registration.failure?
+              flash[:error] = Form.validation_errors(registration)
+              routing.redirect @register_route
+            end
+
+            VerifyRegistration.new(App.config).call(registration)
+            # account_data = routing.params.transform_keys(&:to_sym)
+            # VerifyRegistration.new(App.config).call(account_data)
             flash[:notice] = 'Please check your email for a verification link'
             routing.redirect '/'
           rescue VerifyRegistration::ApiServerError => e
