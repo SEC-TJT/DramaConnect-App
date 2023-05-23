@@ -1,6 +1,6 @@
 module DramaConnect
   class Account
-    def initialize(account_info, auth_token)
+    def initialize(account_info, auth_token = nil)
       @account_info = account_info
       @auth_token = auth_token
     end
