@@ -15,6 +15,7 @@ module DramaConnect
       config.messages.load_paths << File.join(__dir__, 'errors/account_details.yml')
       params do
         required(:username).filled(format?: USERNAME_REGEX, min_size?: 4)
+        required(:name).filled
         required(:email).filled(format?: EMAIL_REGEX)
       end
     end
@@ -37,7 +38,7 @@ module DramaConnect
       end
 
       rule(:password_confirm,:password) do
-        unless values[:password].eql?(values:[password_confirm])
+        unless values[:password].eql?(values[:password_confirm])
           key.failure('Passwords do not match')
         end
       end
