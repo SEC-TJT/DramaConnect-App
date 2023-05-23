@@ -18,18 +18,17 @@ module DramaConnect
         routing.post do
 
           credentials = Form::LoginCredentials.new.call(routing.params)
-
+          # puts credentials.to_h
           if credentials.failure?
             flash[:error] = 'Please enter both username and password'
             routing.redirect @login_route
           end
           authenticated = AuthenticateAccount.new(App.config)
             .call(**credentials.values)
-           current_account = Account.new(
-            authenticated[:account],
-            authenticated[:auth_token]
+          current_account = Account.new(
+            authenticated["account"],
+            authenticated["auth_token"]
           )
-
 
           # account_info = AuthenticateAccount.new(App.config).call(
           #   username: routing.params['username'],
