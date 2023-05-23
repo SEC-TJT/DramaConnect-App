@@ -73,17 +73,16 @@ module DramaConnect
           end
           # POST /auth/register
           routing.post do
-            puts "Hi2"
             
             registration = Form::Registration.new.call(routing.params)
-            puts "Hi"
-            puts registration.failure?
+            puts registration.to_h
+            
             if registration.failure?
               flash[:error] = Form.validation_errors(registration)
               routing.redirect @register_route
             end
-
-            VerifyRegistration.new(App.config).call(registration)
+            
+            VerifyRegistration.new(App.config).call(registration.to_h)
             # account_data = routing.params.transform_keys(&:to_sym)
             # VerifyRegistration.new(App.config).call(account_data)
             flash[:notice] = 'Please check your email for a verification link'
