@@ -2,6 +2,7 @@
 
 require 'roda'
 require 'slim'
+require 'slim/include'
 require 'rack/session'
 
 module DramaConnect

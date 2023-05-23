@@ -1,22 +1,24 @@
 
 require_relative 'form_base'
 
-module DrammaConnet
+module DramaConnect
   module Form
     class LoginCredentials < Dry::Validation::Contract
       params do
         required(:username).filled
-        required(:name).filled
+        # required(:name).filled
         required(:password).filled
       end
     end
     class Registration < Dry::Validation::Contract
+      puts "Registration"
       config.messages.load_paths << File.join(__dir__, 'errors/account_details.yml')
-       params do
+      params do
         required(:username).filled(format?: USERNAME_REGEX, min_size?: 4)
         required(:email).filled(format?: EMAIL_REGEX)
       end
     end
+
     class Passwords < Dry::Validation::Contract
       config.messages.load_paths << File.join(__dir__, 'errors/password.yml')
       params do
