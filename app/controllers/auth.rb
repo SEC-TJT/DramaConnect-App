@@ -24,18 +24,14 @@ module DramaConnect
             flash[:error] = 'Please enter both username and password'
             routing.redirect @login_route
           end
-          puts **credentials.values
+
           authenticated = AuthenticateAccount.new(App.config)
             .call(**credentials.values)
-          puts 'hi2'
-          puts "authenticated:",authenticated
-          puts 'hi'
           current_account = Account.new(
             authenticated[:account],
             authenticated[:auth_token]
           )
-          puts  'hi4'
-          puts  current_account.username
+
           # account_info = AuthenticateAccount.new(App.config).call(
           #   username: routing.params['username'],
           #   password: routing.params['password']
@@ -44,7 +40,8 @@ module DramaConnect
           # SecureSession.new(session).set(:current_account, account)
           CurrentSession.new(session).current_account = current_account
           flash[:notice] = "Welcome back #{current_account.username}!"
-          routing.redirect "/account/#{current_account.username}"
+          puts current_account.username
+          routing.redirect "/dramalists"
         rescue AuthenticateAccount::UnauthorizedError
           print App.config.API_HOST
           flash.now[:error] = 'Username and password did not match our records'
@@ -80,7 +77,6 @@ module DramaConnect
           routing.post do
             
             registration = Form::Registration.new.call(routing.params)
-            puts registration.to_h
             
             if registration.failure?
               flash[:error] = Form.validation_errors(registration)

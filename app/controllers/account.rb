@@ -13,12 +13,8 @@ module DramaConnect
           # if @current_account && @current_account['username'] == username
 
           if @current_account && @current_account.username == username
-            drama_lists = GetAllDramalists.new(App.config).call(@current_account)
-            # if drama_lists.failure?
-            #   puts 'yes'
-            # end
-            print drama_lists
-            view :account, locals: { current_account: @current_account ,drama_lists:  }
+            dramalists = GetAllDramaLists.new(App.config).call(@current_account)
+            view :account, locals: { current_account: @current_account ,dramalists:dramalists  }
           else
             routing.redirect '/auth/login'
           end

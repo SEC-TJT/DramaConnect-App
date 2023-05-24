@@ -4,7 +4,7 @@ require_relative 'form_base'
 
 module DramaConnect
   module Form
-    class NewProject < Dry::Validation::Contract
+    class NewDrama < Dry::Validation::Contract
       config.messages.load_paths << File.join(__dir__, 'errors/new_drama.yml')
 
       params do
