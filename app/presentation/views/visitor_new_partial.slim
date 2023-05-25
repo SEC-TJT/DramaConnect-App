@@ -2,11 +2,11 @@ div id="newVisitorModal" class="modal fade" role="dialog"
   div class="modal-dialog"
     div class="modal-content dialog-container"
       div class="modal-header"
-        h4 class="text-black" Add a Collaborator
+        h4 class="text-black" Add a Visitor
         button type="button" data-bs-dismiss="modal" aria-label="Close" style="border: none !important;background-color:#fff;"
           i class="fa-solid fa-circle-xmark fa-lg"
       div class="modal-body"
-        form role="form" action="/dramaList/#{dramalist.id}/visitors" method='post' id='new-visitor-form'
+        form role="form" action="/dramalists/#{dramalist.id}/visitors" method='post' id='new-visitor-form'
           input type='hidden' name='action' value='add'
           div class="form-group"
             label for='email_input' Email address:
