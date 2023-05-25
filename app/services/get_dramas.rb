@@ -12,7 +12,6 @@ module DramaConnect
     def call(current_account, list_id)
       response = HTTP.auth("Bearer #{current_account.auth_token}")
                     .get("#{@config.API_URL}/dramaList/#{list_id}/dramas")
-
       response.code == 200 ? JSON.parse(response.body.to_s)['data'] : nil
     end
   end

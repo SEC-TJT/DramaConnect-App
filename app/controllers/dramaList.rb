@@ -29,32 +29,32 @@ module DramaConnect
             routing.redirect @dramalists_route
           end
 
-          # POST /dramalists/[list_id]/viewer
-          routing.post('viewer') do
+          # POST /dramalists/[list_id]/visitors
+          routing.post('visitors') do
             action = routing.params['action']
-            viewer_info = Form::ViewerEmail.new.call(routing.params)
-            if viewer_info.failure?
-              flash[:error] = Form.validation_errors(viewer_info)
+            visitors_info = Form::VisitorEmail.new.call(routing.params)
+            if visitors_info.failure?
+              flash[:error] = Form.validation_errors(visitors_info)
               routing.halt
             end
 
             task_list = {
-              'add' => { service: AddViewer,
-                         message: 'Added new viewer to dramalist' },
+              'add' => { service: AddVisitor,
+                         message: 'Added new visitors to dramalist' },
               'remove' => { service: RemoveCollaborator,
-                            message: 'Removed viewer from dramalist' }
+                            message: 'Removed visitors from dramalist' }
             }
 
             task = task_list[action]
             task[:service].new(App.config).call(
               current_account: @current_account,
-              viewer: viewer_info,
+              visitors: visitors_info,
               dramalist_id: list_id
             )
             flash[:notice] = task[:message]
 
           rescue StandardError
-            flash[:error] = 'Could not find viewer'
+            flash[:error] = 'Could not find visitors'
           ensure
             routing.redirect @dramalist_route
           end
@@ -107,7 +107,7 @@ module DramaConnect
             dramalist_data: dramalist_data.to_h
           )
 
-          flash[:notice] = 'Add dramas and viewers to your new dramalist'
+          flash[:notice] = 'Add dramas and visitors to your new dramalist'
         rescue StandardError => e
           puts "FAILURE Creating Dramalist: #{e.inspect}"
           flash[:error] = 'Could not create dramalist'

@@ -8,14 +8,14 @@ module DramaConnect
     route('dramas') do |routing|
       routing.redirect '/auth/login' unless @current_account.logged_in?
 
-      # GET /documents/[doc_id]
-      routing.get(String) do |doc_id|
-        doc_info = GetDocument.new(App.config)
-                              .call(@current_account, doc_id)
-        document = Document.new(doc_info)
+      # GET /dramas/[dra_id]
+      routing.get(String) do |dra_id|
+        dra_info = GetDrama.new(App.config)
+                              .call(@current_account, dra_id)
+        drama = Drama.new(dra_info)
 
-        view :document, locals: {
-          current_account: @current_account, document: document
+        view :drama, locals: {
+          current_account: @current_account, drama: drama
         }
       end
     end
