@@ -41,14 +41,14 @@ module DramaConnect
             task_list = {
               'add' => { service: AddVisitor,
                          message: 'Added new visitors to dramalist' },
-              'remove' => { service: RemoveCollaborator,
+              'remove' => { service: RemoveVisitor,
                             message: 'Removed visitors from dramalist' }
             }
 
             task = task_list[action]
             task[:service].new(App.config).call(
               current_account: @current_account,
-              visitors: visitors_info,
+              visitor: visitors_info,
               dramalist_id: list_id
             )
             flash[:notice] = task[:message]
