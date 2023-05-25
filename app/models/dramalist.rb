@@ -10,7 +10,7 @@ module DramaConnect
     end
 
     attr_reader :id, :name, :repo_url, # basic info
-                :owner, :collaborators, :documents, :policies # full details
+                :owner, :visitors, :dramas, :policies # full details
     private
     def process_attributes(attributes)
       @id = attributes['id']
@@ -22,17 +22,17 @@ module DramaConnect
       return unless relationships
 
       @owner = Account.new(relationships['owner'])
-      @dramas = process_documents(relationships['dramas'])
+      @dramas = process_dramas(relationships['dramas'])
     end
 
     def process_policies(policies)
       @policies = OpenStruct.new(policies)
     end
 
-    def process_documents(documents_info)
-      return nil unless documents_info
+    def process_dramas(dramas_info)
+      return nil unless dramas_info
 
-      documents_info.map { |doc_info| Document.new(doc_info) }
+      dramas_info.map { |doc_info| Drama.new(doc_info) }
     end
   end
 end
