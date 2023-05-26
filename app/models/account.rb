@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DramaConnect
   class Account
     def initialize(account_info, auth_token = nil)
