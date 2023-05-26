@@ -13,25 +13,26 @@ module DramaConnect
           # if @current_account && @current_account['username'] == username
 
           if @current_account && @current_account.username == username
-            drama_lists = GetAllDramalists.new(App.config).call(@current_account)
-            print drama_lists
-            view :account, locals: { current_account: @current_account ,drama_lists:  }
+            dramalists = GetAllDramaLists.new(App.config).call(@current_account)
+            view :account, locals: { current_account: @current_account ,dramalists:dramalists  }
           else
             routing.redirect '/auth/login'
           end
         end
         # POST /account/<registration_token>
         routing.post String do |registration_token|
-        raise 'Passwords do not match or empty' if
-          routing.params['password'].empty? ||
-          routing.params['password'] != routing.params['password_confirm']
+        # raise 'Passwords do not match or empty' if
+        #   routing.params['password'].empty? ||
+        #   routing.params['password'] != routing.params['password_confirm']
+        passwords = Form::Passwords.new.call(routing.params)
+        raise Form.message_values(passwords) if passwords.failure?
 
         new_account = SecureMessage.decrypt(registration_token)
         CreateAccount.new(App.config).call(
           email: new_account['email'],
           username: new_account['username'],
           name: new_account['name'],
-          password: routing.params['password']
+          password: passwords['password']
         )
         flash[:notice] = 'Account created! Please login'
         routing.redirect '/auth/login'

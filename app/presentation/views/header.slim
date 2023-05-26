@@ -1,0 +1,21 @@
+div class="menu d-flex flex-row justify-content-center align-items-center"
+    - (url ||= '') << "/dramalists/"
+    - unless pre_route==''
+      a href='#{pre_route}'
+        i class="fa-solid fa-caret-left fa-2xl me-4" style="color: #676767;"
+    a href="#{url}" class="menu-item active d-flex align-items-center"
+      i class="fa-solid fa-house"
+      p class="m-2" Home
+    div class="black-bar"
+    a href='\'  class="menu-item d-flex align-items-center"
+      i class="fa-solid fa-user-group"
+      p class="m-2" Shared
+    div class="black-bar"
+    a href='\'  class="menu-item d-flex align-items-center"
+      i class="fa-solid fa-globe"
+      p class="m-2" Publice
+    button type="button" class="menu-item d-flex align-items-center new-list-btn" data-bs-toggle="modal" data-bs-target="#newDramaListModal"
+      i class="fa-solid fa-plus"
+      p class="m-2" New DramaList
+
+include :dramalist_new_partial
