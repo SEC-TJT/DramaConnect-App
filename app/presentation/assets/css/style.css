@@ -250,7 +250,6 @@
     flex: none;
     order: 0;
     flex-grow: 0;
-
 }
 
 .menu-item{
@@ -291,7 +290,6 @@
     background: #444444;
 
 }
-
 .new-list-btn {
     background-color: #F2F6EF;
     border: none !important;
@@ -332,3 +330,4 @@
 .drama-item-box:hover {
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
+
