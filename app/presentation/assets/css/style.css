@@ -88,6 +88,11 @@
     background-color: #FFD9D9;
     background-image: linear-gradient(180deg, #FFD9D9 0%, #DBFBEF 83%);
 }
+.black-btn {
+    width: 100%;
+    background-color: #000000;
+    background-image: linear-gradient(180deg, #000000 0%, #000000 83%);
+}
 .gradient-btn:hover {
     background-image: linear-gradient(180deg, #ffefef 0%, #d9e8e3 83%);
 }

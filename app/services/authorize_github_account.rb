@@ -39,7 +39,7 @@ module DramaConnect
       response =
         HTTP.post("#{@config.API_URL}/auth/sso",
                   json: { access_token: access_token })
-      puts access_token
+      # puts access_token
       raise if response.code >= 400
 
       account_info = JSON.parse(response)['data']['attributes']
