@@ -86,7 +86,6 @@ module DramaConnect
         # GET /dramalists/
         routing.get do
           dramalists = GetAllDramalists.new(App.config).call(@current_account)
-          
           view :account, locals: {
             current_account: @current_account, dramalists: dramalists
           }
