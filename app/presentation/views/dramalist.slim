@@ -12,6 +12,17 @@ div class="row h-100"
           p class="m-2 drama-tag" Private
           p class="m-2 drama-tag" 2022/01 Update
           p class="m-2 drama-tag" Horrible Movies
+          div class="dropdown show m-2"
+            button class="btn" type="button" id="editDrop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+              i class="fa-solid fa-list-ul"
+            div class="dropdown-menu" aria-labelledby="#editDrop"
+              a class="dropdown-item" href="#" 
+                i class="fa-solid fa-pen-to-square"
+                span Edit Drama List
+              hr class="dropdown-divider"
+              a class="dropdown-item" href="#"
+                i class="fa-solid fa-trash"
+                span Delete Drama List
         p class="m-2 w-100" #{dramalist.description}
         div class="d-flex mt-2 w-100 justify-content-start"
           button type="button" class="badge rounded-pill text-bg-dark mx-1" data-bs-toggle="modal" data-bs-target="#newDramaModal"
