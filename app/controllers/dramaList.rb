@@ -10,11 +10,30 @@ module DramaConnect
         routing.redirect '/auth/login' unless @current_account.logged_in?
         @dramalists_route = '/dramalists'
 
+        routing.get 'dramalists', String, 'dramas', String do |list_id, drama_id|
+          # Your code logic for handling the request goes here
+          puts list_id,drama_id
+
+          drama_info = GetDrama.new(App.config).call(
+              @current_account, list_id,drama_id
+            )
+          puts "Drama Info is:",drama_info
+          drama=Drama.new(drama_info);
+          puts drama.review
+          view :drama,locals: {
+              current_account: @current_account,
+              drama:drama,
+              list_id:list_id
+            }
+          # "Fetching drama with list_id #{list_id} and drama_id #{drama_id}"
+        end
+
         routing.on(String) do |list_id|
           @dramalist_route = "#{@dramalists_route}/#{list_id}"
 
           # GET /dramalists/[list_id]
           routing.get do
+            puts "Hello"
             list_info = GetDramas.new(App.config).call(
               @current_account, list_id
             )
@@ -59,28 +78,38 @@ module DramaConnect
             routing.redirect @dramalist_route
           end
 
-          # POST /dramalists/[list_id]/dramas/
-          routing.post('dramas') do
-            puts routing.params
-            drama_data = Form::NewDrama.new.call(routing.params)
-            if drama_data.failure?
-              flash[:error] = Form.message_values(drama_data)
-              routing.halt
+          
+          routing.on('dramas') do
+            # get /dramalists/[list_id]/dramas/[drama_id]
+            # routing.on(String) do |drama_id|
+            #   @drama_route = "#{@dramalists_route}/#{list_id}/dramas/#{drama_id}"
+            #   routing.get do
+            #     view :drama
+            #   end
+            # end
+            # POST /dramalists/[list_id]/dramas/
+            routing.post do
+              puts routing.params
+              drama_data = Form::NewDrama.new.call(routing.params)
+              if drama_data.failure?
+                flash[:error] = Form.message_values(drama_data)
+                routing.halt
+              end
+
+              CreateNewDrama.new(App.config).call(
+                current_account: @current_account,
+                dramalist_id: list_id,
+                drama_data: drama_data.to_h
+              )
+
+              flash[:notice] = 'Your drama was added'
+            rescue StandardError => error
+              puts error.inspect
+              puts error.backtrace
+              flash[:error] = 'Could not add drama'
+            ensure
+              routing.redirect @dramalist_route
             end
-
-            CreateNewDrama.new(App.config).call(
-              current_account: @current_account,
-              dramalist_id: list_id,
-              drama_data: drama_data.to_h
-            )
-
-            flash[:notice] = 'Your drama was added'
-          rescue StandardError => error
-            puts error.inspect
-            puts error.backtrace
-            flash[:error] = 'Could not add drama'
-          ensure
-            routing.redirect @dramalist_route
           end
         end
 

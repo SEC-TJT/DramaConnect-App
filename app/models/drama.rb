@@ -5,7 +5,7 @@ require_relative 'dramalist'
 module DramaConnect
   # Behaviors of the currently logged in account
   class Drama
-    attr_reader :id, :name, :rate, :revire, :type, :category, :picture_url, :year, # basic info
+    attr_reader :id, :name, :rate, :review,:updated_date, :type, :category, :picture_url, :year, # basic info
                 :dramalist # full details
 
     def initialize(info)
@@ -24,6 +24,7 @@ module DramaConnect
       @category = attributes['category']
       @picture_url = attributes['picture_url']
       @year = attributes['year']
+      @updated_date = attributes['updated_date'].to_s.split(" ")[0]
     end
 
     def process_included(included)

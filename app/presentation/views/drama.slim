@@ -1,0 +1,20 @@
+div class="row h-100"
+  div class="col-4"
+    == render :nav
+  div class="col-8"
+    div class="w-90 d-flex flex-column justify-content-center align-items-center"
+      == render :header, locals: { pre_route: "/dramalists/#{list_id}" }
+      div class="shadow-sm drama-container w-100"
+        div class="d-flex w-100"
+          div class="drama-title flex-grow-1 m-2" #{drama.name}
+          p class="m-2 drama-tag" #{drama.updated_date} Update
+          p class="m-2 drama-tag" #{drama.type}
+        - if drama.picture_url.nil?
+          div class="m-2 drama-bg w-100" style="height: 187px;"
+          / p class="m-2 w-100" #{drama.review}
+        - unless drama.picture_url.nil?
+          div class="w-100 drama-picture" style="height: 187px; "
+            img src="#{drama.picture_url}" alt="photo"
+        p class="m-2 review w-100" #{{drama.review.gsub("\n","<br/>")}}
+
+      

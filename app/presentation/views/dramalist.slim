@@ -22,7 +22,6 @@ div class="row h-100"
             span Manage Visitor
         - dramalist.dramas.each do |drama|
           a class="drama-item-box text-decoration-none text-black" href="dramalists/#{dramalist.id}/dramas/#{drama.id}" 
-            span "dramalists/#{dramalist.id}/dramas/#{drama.id}"  
             span class="m-2" #{drama.name}
             i class="fa-solid fa-caret-right fa-2xl me-5 mt-3" style="color: #676767; float: right;"
 include :drama_new_partial
