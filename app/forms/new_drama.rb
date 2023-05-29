@@ -11,6 +11,11 @@ module DramaConnect
         required(:name).filled
         required(:rate).filled
         required(:review).filled
+        
+        required(:picture_url).value(:string)
+        required(:year).value(:integer)
+        required(:category).value(:string)
+        required(:type).value(:string)
       end
     end
   end

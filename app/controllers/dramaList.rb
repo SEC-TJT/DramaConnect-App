@@ -61,6 +61,7 @@ module DramaConnect
 
           # POST /dramalists/[list_id]/dramas/
           routing.post('dramas') do
+            puts routing.params
             drama_data = Form::NewDrama.new.call(routing.params)
             if drama_data.failure?
               flash[:error] = Form.message_values(drama_data)
