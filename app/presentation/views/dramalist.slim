@@ -16,13 +16,18 @@ div class="row h-100"
             button class="btn" type="button" id="editDrop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
               i class="fa-solid fa-list-ul"
             div class="dropdown-menu" aria-labelledby="#editDrop"
+
               a class="dropdown-item" href="#" 
                 i class="fa-solid fa-pen-to-square"
                 span Edit Drama List
               hr class="dropdown-divider"
-              a class="dropdown-item" href="#"
-                i class="fa-solid fa-trash"
-                span Delete Drama List
+              form class="dropdown-item" action="/dramalists/#{dramalist.id}" method="post"
+                  button type="submit" name="delete" value="delete" class="btn-link"
+                    i class="fa-solid fa-trash"
+                    span Delete Drama List
+              / a class="dropdown-item" href="#"
+              /   i class="fa-solid fa-trash"
+              /   span Delete Drama List
         p class="m-2 w-100" #{dramalist.description}
         div class="d-flex mt-2 w-100 justify-content-start"
           button type="button" class="badge rounded-pill text-bg-dark mx-1" data-bs-toggle="modal" data-bs-target="#newDramaModal"

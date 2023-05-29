@@ -48,6 +48,7 @@ module DramaConnect
             routing.redirect @dramalists_route
           end
 
+
           # POST /dramalists/[list_id]/visitors
           routing.post('visitors') do
             action = routing.params['action']
@@ -111,6 +112,24 @@ module DramaConnect
               routing.redirect @dramalist_route
             end
           end
+
+          # Delete /dramalists/[list_id]
+          routing.post do 
+            action = routing.params['delete']
+            if action =='delete'
+              task=RemoveDramalist.new(App.config).call(
+                current_account:@current_account,
+                dramalist_id:list_id
+              )
+              flash[:notice] = task.to_h['message']
+            end
+            
+          rescue StandardError
+            flash[:error] = 'Could not delete the dramalist'
+          ensure
+            routing.redirect @dramalists_route
+          end
+
         end
 
         # GET /dramalists/
