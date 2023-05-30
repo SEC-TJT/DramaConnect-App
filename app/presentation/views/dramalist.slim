@@ -3,7 +3,7 @@ div class="row h-100"
     == render :nav
   div class="col-8"
     div class="w-90 d-flex flex-column justify-content-center align-items-center"
-      == render :header, locals: { pre_route: '/dramalists' }
+      == render :header, locals: { pre_route: '/dramalists',sharing:defined?(sharing)  }
       div class="shadow-sm drama-container w-100"
         div class="d-flex w-100"
           div class="drama-title flex-grow-1 m-2" 
@@ -23,7 +23,7 @@ div class="row h-100"
               /   i class="fa-solid fa-pen-to-square"
               /   span Edit Drama List
               hr class="dropdown-divider"
-              form class="dropdown-item" action="/dramalists/#{dramalist.id}" method="post"
+              form class="dropdown-item  mx-1" action="/dramalists/#{dramalist.id}" method="post"
                   button class="dropdown" type="submit" name="delete" value="delete" class="btn-link"
                     i class="fa-solid fa-trash"
                     span Delete Drama List

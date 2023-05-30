@@ -20,9 +20,9 @@ div class="row h-100"
                 i class="fa-solid fa-pen-to-square"
                 span Edit Drama 
               hr class="dropdown-divider"
-              form class="dropdown-item mx-1" action="/dramas/#{drama.id}" method="post"
+              form class="dropdown-item" action="/dramas/#{drama.id}" method="post"
                   input type="hidden" name="list_id" value="#{list_id}"
-                  button class="dropdown" type="submit" name="delete" value="delete" class="btn-link"
+                  button class="dropdown mx-1" type="submit" name="delete" value="delete" class="btn-link"
                     i class="fa-solid fa-trash"
                     span Delete Drama
         - if drama.picture_url.nil?

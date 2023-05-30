@@ -1,6 +1,6 @@
 
 div class="w-90 d-flex flex-column justify-content-center align-items-center"
-  == render :header, locals: { pre_route: '' }
+  == render :header, locals: { pre_route: '' ,sharing:}
   - if dramalists.empty?
     div class="shadow-sm drama-container w-100 .bg-secondary-subtle" style="height: 120px;"
       p Drama list not found.

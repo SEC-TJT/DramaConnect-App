@@ -3,5 +3,5 @@ div class="row h-100"
     == render :nav
   div class="col-8"
     / p #{dramalists}
-    == render :dramalists,locals: { dramalists:  }
+    == render :dramalists,locals: { dramalists:  , sharing: defined?(sharing)  }
 

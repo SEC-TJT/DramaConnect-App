@@ -28,12 +28,19 @@ module DramaConnect
             # "Fetching drama with list_id #{list_id} and drama_id #{drama_id}"
         end
 
+        routing.get('shared') do
+          dramalists = GetAllDramalists.new(App.config).call(@current_account,'/shared')
+          puts "darmalists:",dramalists
+          view :account, locals: {
+            current_account: @current_account, dramalists: dramalists,sharing:'true'
+          }
+        end
+
         routing.on(String) do |list_id|
           @dramalist_route = "#{@dramalists_route}/#{list_id}"
 
           # GET /dramalists/[list_id]
           routing.get do
-            puts "Hello"
             list_info = GetDramas.new(App.config).call(
               @current_account, list_id
             )
@@ -148,11 +155,14 @@ module DramaConnect
 
         # GET /dramalists/
         routing.get do
-          dramalists = GetAllDramalists.new(App.config).call(@current_account)
+          dramalists = GetAllDramalists.new(App.config).call(@current_account,'/owned')
+          puts "darmalists:",dramalists
           view :account, locals: {
             current_account: @current_account, dramalists: dramalists
           }
         end
+        
+
 
         # POST /dramalists/
         routing.post do
