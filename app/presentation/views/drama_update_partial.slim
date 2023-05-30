@@ -1,0 +1,35 @@
+div id="updateDramaModal" class="modal fade" role="dialog"
+  div class="modal-dialog"
+    div class="modal-content dialog-container"
+      div class="modal-header"
+        h4 class="text-black" Update Drama
+        button type="button" data-bs-dismiss="modal" aria-label="Close" style="border: none !important;background-color:#fff;"
+          i class="fa-solid fa-circle-xmark fa-lg"
+      div class="modal-body"
+        form role="form" action="/dramas/#{drama.id}" method='post' id='update-drama-form'
+          div class="new-drama-form-group"
+            input type="hidden" name="list_id" value="#{list_id}"
+            input type='text' name='name' id='name_input' class="form-control name-input" value="#{drama.name}"  placeholder="Write Your Title Here"
+            
+            label for="rate_input" class="form-label m-1" Rate
+            input class="form-control m-1" id="rate_input" name="rate" value="#{drama.rate}"
+
+            label for="review_input" class="form-label m-1" Review
+            textarea class="form-control m-1" id="review_input" rows="3" name="review" #{drama.review}
+            
+            label for="picture_url_input" class="form-label m-1" Picture Url
+            input class="form-control m-1" id="picture_url_input" name="picture_url" value="#{drama.picture_url}"
+
+            label for="year_input" class="form-label m-1" Year
+            input class="form-control m-1" id="year_input" name="year" value="#{drama.year}"
+
+            label for="category_input" class="form-label m-1" Category
+            input class="form-control m-1" id="category_input" name="category" value="#{drama.category}"
+
+            label for="type_input" class="form-label m-1" Type
+            input class="form-control m-1" id="type_input" name="type" value="#{drama.type}"
+
+          button type='submit' id='registration-form-submit' name="update"  class='update' value='update' class="btn-common black-btn shadow-sm mt-3 w-100" 
+            i class="fa-regular fa-circle-up"
+            span class="ms-3" Updated Drama
+
