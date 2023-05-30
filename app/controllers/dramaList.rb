@@ -115,11 +115,25 @@ module DramaConnect
 
           # Delete /dramalists/[list_id]
           routing.post do 
-            action = routing.params['delete']
+            puts 'Delete or Update',routing.params
+            action = routing.params['delete']||routing.params['update']
             if action =='delete'
               task=RemoveDramalist.new(App.config).call(
                 current_account:@current_account,
                 dramalist_id:list_id
+              )
+              flash[:notice] = task.to_h['message']
+            elsif action=='update'
+
+              dramalist_data = Form::NewDramalist.new.call(routing.params)
+              if dramalist_data.failure?
+                flash[:error] = Form.message_values(drama_data)
+                routing.halt
+              end
+              task=UpdateDramalist.new(App.config).call(
+                current_account:@current_account,
+                list_id:list_id,
+                dramalist_data:dramalist_data.to_h
               )
               flash[:notice] = task.to_h['message']
             end
