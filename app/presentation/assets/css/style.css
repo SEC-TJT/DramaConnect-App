@@ -354,3 +354,10 @@ p.review{
     height: 50vh;
     overflow-y: auto;
 }
+button.dropdown{
+    /* color: transparent ; */
+    border: none;
+    text-decoration: none;
+    background-color: transparent;
+    color: #535353;
+}

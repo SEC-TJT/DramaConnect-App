@@ -11,7 +11,7 @@ module DramaConnect
         @dramalists_route = '/dramalists'
 
         routing.get 'dramalists', String, 'dramas', String do |list_id, drama_id|
-          # Your code logic for handling the request goes here
+          # Your code logic for handling the request goes her
           puts list_id,drama_id
 
           drama_info = GetDrama.new(App.config).call(
@@ -25,7 +25,7 @@ module DramaConnect
               drama:drama,
               list_id:list_id
             }
-          # "Fetching drama with list_id #{list_id} and drama_id #{drama_id}"
+            # "Fetching drama with list_id #{list_id} and drama_id #{drama_id}"
         end
 
         routing.on(String) do |list_id|
