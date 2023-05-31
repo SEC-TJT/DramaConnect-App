@@ -45,9 +45,9 @@ module DramaConnect
               @current_account, list_id
             )
             dramalist = Dramalist.new(list_info)
-
+            accounts = GetAllAccounts.new(App.config).call(@current_account)
             view :dramalist, locals: {
-              current_account: @current_account, dramalist: dramalist
+              current_account: @current_account, dramalist:, accounts:
             }
           rescue StandardError => e
             puts "#{e.inspect}\n#{e.backtrace}"

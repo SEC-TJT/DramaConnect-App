@@ -8,7 +8,11 @@ div id="newVisitorModal" class="modal fade" role="dialog"
       div class="modal-body"
         form role="form" action="/dramalists/#{dramalist.id}/visitors" method='post' id='new-visitor-form'
           input type='hidden' name='action' value='add'
-          div class="form-group"
-            label for='email_input' Email address:
-            input type='text' name='email' id='email_input' class="form-control" placeholder="Email of visitor"
+          div class="input-group mb-3"
+            label class="input-group-text" for="email_input" Username
+            select class="form-select" name='email' id="email_input"
+              option selected Choose...
+              - accounts.each do |account| 
+                option value="#{account["email"]}" #{account["username"]}
           button type='submit' class="btn btn-primary submit" id='registration-form-submit' value='submit' Add
+
