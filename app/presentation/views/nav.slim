@@ -1,5 +1,6 @@
 nav role="navigation" class="side-navbar nav-container"
-  div class="avator-box"
+  a href="/account/#{@current_account.username}"
+    div class="avator-box"
   - if @current_account
     div class="nav-title" 
       = "#{@current_account.username}"
