@@ -2,6 +2,27 @@ div class="row h-100"
   div class="col-4"
     == render :nav
   div class="col-8"
-    / p #{dramalists}
-    == render :dramalists,locals: { dramalists:  , sharing: defined?(sharing)  }
+    == render :header, locals: { pre_route: '',sharing: ''  }
+    div class="account-container"
+        div class="avator-box"
+        div class="nav-title" #{account.username}
+        div class="nav-subtitle" #{account.email}
+        - if account.username == @current_account.username
+            div class="nav-intro" Lorem Ipsum 
+            stong API Access:
+            span
+            = "(read-only key valid for one month)"
 
+            button class="btn btn-dark" type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' show
+            div id="exampleModal" class="modal fade" tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'
+                div class="modal-dialog modal-dialog-centered"
+                    div class="modal-content"
+                        div class="modal-header"
+                            h1#exampleModalLabel.modal-title.fs-5 API Access
+                            button class="btn-close" type='button' data-bs-dismiss='modal' aria-label='Close'
+                        div class="modal-body"
+                            pre class="text-wrap" #{account.auth_token}
+                        div class="modal-footer"
+                            button class="btn btn-dark" type='button' data-bs-dismiss='modal' aria-label='Close' Close
+
+      
