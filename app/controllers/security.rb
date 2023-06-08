@@ -14,7 +14,7 @@ module DramaConnect
 
     FONT_SRC = %w[https://cdn.jsdelivr.net https://kit.fontawesome.com].freeze
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net https://kit.fontawesome.com].freeze
-    STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://kit.fontawesome.com].freeze
+    STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net].freeze
 
     configure :production do
       use Rack::SslEnforcer, hsts: true
@@ -50,7 +50,7 @@ module DramaConnect
         img_src: %w['self'],
         font_src: %w['self'] + FONT_SRC,
         script_src: %w['self'] + SCRIPT_SRC,
-        style_src: %W['self'] + STYLE_SRC,
+        style_src: %W['self'] + STYLE_SRC + ["'unsafe-inline'"],
         form_action: %w['self'],
         frame_ancestors: %w['none'],
         object_src: %w['none'],
