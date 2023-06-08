@@ -12,7 +12,7 @@ module DramaConnect
     plugin :environments
     plugin :multi_route
 
-    FONT_SRC = %w[https://cdn.jsdelivr.net https://kit.fontawesome.com].freeze
+    FONT_SRC = %w[https://cdn.jsdelivr.net https://ka-f.fontawesome.com].freeze
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net https://kit.fontawesome.com].freeze
     STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net].freeze
 
@@ -46,7 +46,7 @@ module DramaConnect
         preserve_schemes: true,
         default_src: %w['self'],
         child_src: %w['self'],
-        connect_src: %w[wws:],
+        connect_src: %w[wws: https://ka-f.fontawesome.com],
         img_src: %w['self'],
         font_src: %w['self'] + FONT_SRC,
         script_src: %w['self'] + SCRIPT_SRC,
