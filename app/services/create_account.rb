@@ -15,14 +15,15 @@ module DramaConnect
     end
 
     def call(username:,name:, password:, email:)
-      message = {
-        email: ,
-        username: ,
-        name: ,
-        password: ,
-      }
+      # message = {
+      #   email: ,
+      #   username: ,
+      #   name: ,
+      #   password: ,
+      # }
+      account = { email: , username: , name: , password: }
       puts "#{@config.API_URL}/accounts"
-      response = HTTP.post("#{@config.API_URL}/accounts", json: message)
+      response = HTTP.post("#{@config.API_URL}/accounts", json: SignedMessage.sign(account))
 
       raise InvalidAccount unless response.code == 201
     end

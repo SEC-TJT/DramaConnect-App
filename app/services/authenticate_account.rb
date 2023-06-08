@@ -12,8 +12,10 @@ module DramaConnect
     # end
 
     def call(username:, password:)
+      credentials = { username: username, password: password }
+
       response = HTTP.post("#{ENV['API_URL']}/auth/authenticate",
-                           json: { username:, password: })
+                           json: SignedMessage.sign(credentials))
 
       raise(NotAuthenticatedError) if response.code == 401
       raise(ApiServerError) if response.code != 200

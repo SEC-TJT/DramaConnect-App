@@ -6,7 +6,7 @@ require 'figaro'
 require 'logger'
 require 'rack/ssl-enforcer'
 require 'rack/session'
-require 'rack/session/redis'
+# require 'rack/session/redis'
 require_relative '../require_app'
 
 require_app('lib')
@@ -32,6 +32,7 @@ module DramaConnect
 
     configure do
       SecureMessage.setup(ENV.delete('MSG_KEY'))
+      SignedMessage.setup(config)
     end
 
     configure :production do
@@ -41,6 +42,8 @@ module DramaConnect
 
       use Rack::Session::Redis,
           expire_after: ONE_MONTH,
+          httponly: true,
+          same_site: :strict,
           redis_server: {
             url: ENV.delete('REDIS_TLS_URL'),
             ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'roda'
+require_relative './app'
 
 module DramaConnect
   # Web controller for DramaConnect API
@@ -86,7 +87,7 @@ module DramaConnect
             routing.redirect @dramalist_route
           end
 
-          
+
           routing.on('dramas') do
             # get /dramalists/[list_id]/dramas/[drama_id]
             # routing.on(String) do |drama_id|
@@ -121,7 +122,7 @@ module DramaConnect
           end
 
           # Delete /dramalists/[list_id]
-          routing.post do 
+          routing.post do
             puts 'Delete or Update',routing.params
             action = routing.params['delete']||routing.params['update']
             if action =='delete'
@@ -144,7 +145,7 @@ module DramaConnect
               )
               flash[:notice] = task.to_h['message']
             end
-            
+
           rescue StandardError
             flash[:error] = 'Could not delete the dramalist'
           ensure
@@ -161,7 +162,7 @@ module DramaConnect
             current_account: @current_account, dramalists: dramalists
           }
         end
-        
+
 
 
         # POST /dramalists/
