@@ -5,7 +5,7 @@ require 'rake/testtask'
 require './require_app'
 
 task :print_env do
-  puts "Environment: #{ENV.fetch('RACK_ENV', 'development')}"
+  puts "Environment: #{ENV['RACK_ENV'] || 'development'}"
 end
 
 desc 'Run application console (pry)'
@@ -61,6 +61,16 @@ namespace :generate do
   desc 'Create cookie secret'
   task :session_secret => :load_lib do
     puts "New SESSION_SECRET (base64): #{SecureSession.generate_secret}"
+  end
+end
+
+namespace :url do
+  # usage: $ rake url:integrity URL=http://example.org/script.js
+  desc 'Generate integrity hash for a URL (argument: URL=...)'
+  task :integrity do
+    sha384 = `curl -L -s #{ENV['URL']} | openssl dgst -sha256 -binary | \
+              openssl enc -base64`
+    puts "sha384-#{sha384}"
   end
 end
 
