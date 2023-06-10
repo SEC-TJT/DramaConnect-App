@@ -3,7 +3,7 @@ div class="row h-100"
     == render :nav
   div class="col-8"
     div class="w-90 d-flex flex-column justify-content-center align-items-center"
-      == render :header, locals: { pre_route: '/dramalists',sharing:defined?(sharing)  }
+      == render :header, locals: { pre_route: '/dramalists',sharing:sharing  }
       div class="shadow-sm drama-container w-100"
         div class="d-flex w-100"
           div class="drama-title flex-grow-1 m-2" 

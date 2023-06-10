@@ -15,25 +15,27 @@ module DramaConnect
           # Your code logic for handling the request goes her
           puts list_id,drama_id
 
-          drama_info = GetDrama.new(App.config).call(
+          drama_info,policy = GetDrama.new(App.config).call(
               @current_account, list_id,drama_id
             )
-          puts "Drama Info is:",drama_info
+          puts "policy",policy
           drama=Drama.new(drama_info);
-          puts drama.review
+          puts drama.policies
           view :drama,locals: {
               current_account: @current_account,
               drama:drama,
-              list_id:list_id
+              list_id:list_id,
+              sharing: @sharing
             }
             # "Fetching drama with list_id #{list_id} and drama_id #{drama_id}"
         end
 
         routing.get('shared') do
+          @sharing=true
           dramalists = GetAllDramalists.new(App.config).call(@current_account,'/shared')
           dramalists_data = Dramalists.new(dramalists)
           view :dramalist_gen, locals: {
-            current_account: @current_account, dramalists: dramalists_data,sharing:'true'
+            current_account: @current_account, dramalists: dramalists_data,sharing: @sharing
           }
         end
 
@@ -49,7 +51,7 @@ module DramaConnect
             dramalist = Dramalist.new(list_info)
             puts "Dramalist's owner is:",dramalist.owner.username
             accounts = GetAllAccounts.new(App.config).call(@current_account)
-            view :dramalist, locals: {
+            view :dramalist, locals: { sharing: @sharing,
               current_account: @current_account, dramalist:, accounts:
             }
           rescue StandardError => e
@@ -158,9 +160,10 @@ module DramaConnect
 
         # GET /dramalists/
         routing.get do
+          @sharing = false
           dramalists = GetAllDramalists.new(App.config).call(@current_account,'/owned')
           dramalists_data = Dramalists.new(dramalists)
-          view :dramalist_gen, locals: {
+          view :dramalist_gen, locals: { sharing: @sharing,
             current_account: @current_account, dramalists: dramalists_data
           }
         end

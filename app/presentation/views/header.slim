@@ -3,7 +3,7 @@ div class="menu d-flex flex-row justify-content-center align-items-center"
     - unless pre_route==''
       a href='#{pre_route}'
         i class="fa-solid fa-caret-left fa-2xl me-4" style="color: #676767;"
-    - if defined?(sharing).nil? ||sharing!='local-variable'
+    - if !sharing
       a href="#{url}" class="menu-item active d-flex align-items-center"
         i class="fa-solid fa-house"
         p class="m-2" Home
@@ -11,7 +11,7 @@ div class="menu d-flex flex-row justify-content-center align-items-center"
       a href="/dramalists/shared"  class="menu-item d-flex align-items-center"
         i class="fa-solid fa-user-group"
         p class="m-2" Shared
-    - if (not defined?(sharing).nil?) && sharing=='local-variable'
+    - if sharing
       a href="#{url}" class="menu-item d-flex align-items-center"
         i class="fa-solid fa-house"
         p class="m-2" Home
