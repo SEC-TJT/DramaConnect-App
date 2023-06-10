@@ -31,9 +31,9 @@ module DramaConnect
 
         routing.get('shared') do
           dramalists = GetAllDramalists.new(App.config).call(@current_account,'/shared')
-          puts "darmalists:",dramalists
+          dramalists_data = Dramalists.new(dramalists)
           view :dramalist_gen, locals: {
-            current_account: @current_account, dramalists: dramalists,sharing:'true'
+            current_account: @current_account, dramalists: dramalists_data,sharing:'true'
           }
         end
 
@@ -45,7 +45,9 @@ module DramaConnect
             list_info = GetDramas.new(App.config).call(
               @current_account, list_id
             )
+            puts "List Info is:",list_info
             dramalist = Dramalist.new(list_info)
+            puts "Dramalist's owner is:",dramalist.owner.username
             accounts = GetAllAccounts.new(App.config).call(@current_account)
             view :dramalist, locals: {
               current_account: @current_account, dramalist:, accounts:
@@ -157,9 +159,9 @@ module DramaConnect
         # GET /dramalists/
         routing.get do
           dramalists = GetAllDramalists.new(App.config).call(@current_account,'/owned')
-          puts "darmalists:",dramalists
+          dramalists_data = Dramalists.new(dramalists)
           view :dramalist_gen, locals: {
-            current_account: @current_account, dramalists: dramalists
+            current_account: @current_account, dramalists: dramalists_data
           }
         end
 

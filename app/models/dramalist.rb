@@ -1,6 +1,6 @@
 module DramaConnect
   class Dramalist
-    attr_reader :id, :name, :description,
+    attr_reader :id, :name, :description,:updated_date,
                 :owner, :dramas, :policies # full details
 
     def initialize(dramalist_info) 
@@ -16,6 +16,7 @@ module DramaConnect
       @id = attributes['id']
       @name = attributes['name']
       @description = attributes['description']
+      @updated_date = attributes['updated_date'].to_s.split(" ")[0]
     end
 
     def process_relationships(relationships)

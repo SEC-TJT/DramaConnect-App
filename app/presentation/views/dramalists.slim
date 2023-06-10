@@ -1,17 +1,15 @@
 
 div class="w-90 d-flex flex-column justify-content-center align-items-center"
   == render :header, locals: { pre_route: '' ,sharing:}
-  - if dramalists.empty?
+  - if dramalists.all.length==0
     div class="shadow-sm drama-container w-100 .bg-secondary-subtle" style="height: 120px;"
       p Drama list not found.
-  - unless dramalists.empty?
-    - dramalists.each do |dramalist|
+  - unless dramalists.all.length==0
+    - dramalists.all.each do |dramalist|
       div class="shadow-sm drama-container w-100"
-        a class="drama-link" href="/dramalists/#{dramalist["attributes"]["id"]}" 
+        a class="drama-link" href="/dramalists/#{dramalist.id}" 
         / p #{dramalist}
         div class="d-flex w-100"
-          div class="drama-title flex-grow-1 m-2" #{dramalist["attributes"]["name"]}
-          p class="m-2 drama-tag" Private
-          p class="m-2 drama-tag" 2022/01 Update
-          p class="m-2 drama-tag" Horrible Movies
-        p class="m-2 w-100" #{dramalist["attributes"]["description"]}
+          div class="drama-title flex-grow-1 m-2" #{dramalist.name}
+          p class="m-2 drama-tag" #{dramalist.updated_date} Update
+        p class="m-2 w-100" #{dramalist.description}
