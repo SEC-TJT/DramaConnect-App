@@ -9,35 +9,35 @@ div class="row h-100"
           div class="drama-title flex-grow-1 m-2" 
             span #{dramalist.name}
             i class="fa-solid fa-share-nodes m-2"
-          p class="m-2 drama-tag" Private
-          p class="m-2 drama-tag" 2022/01 Update
-          p class="m-2 drama-tag" Horrible Movies
-          div class="dropdown show m-2"
+          p class="m-2 drama-tag" #{dramalist.updated_date} Update
+          p class="m-2 drama-tag" #{dramalist.dramas.length} Review(s)
+          - if dramalist.policies.can_edit
+            div class="dropdown show m-2"
             button class="btn" type="button" id="editDrop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
               i class="fa-solid fa-list-ul"
             div class="dropdown-menu" aria-labelledby="#editDrop"
               button class="dropdown-item dropdown mx-1" type="button"  data-bs-toggle="modal" data-bs-target="#updateDramaListModal"
                 i class="fa-solid fa-pen-to-square"
                 span Edit Drama List
-              / a class="dropdown-item" href="#" 
-              /   i class="fa-solid fa-pen-to-square"
-              /   span Edit Drama List
               hr class="dropdown-divider"
               form class="dropdown-item  mx-1" action="/dramalists/#{dramalist.id}" method="post"
                   button class="dropdown" type="submit" name="delete" value="delete" class="btn-link"
                     i class="fa-solid fa-trash"
                     span Delete Drama List
-              / a class="dropdown-item" href="#"
-              /   i class="fa-solid fa-trash"
-              /   span Delete Drama List
         p class="m-2 w-100" #{dramalist.description}
         div class="d-flex mt-2 w-100 justify-content-start"
-          button type="button" class="badge rounded-pill text-bg-dark mx-1" data-bs-toggle="modal" data-bs-target="#newDramaModal"
-            i class="fa-solid fa-plus"
-            span Add New Drama
-          button type="button" class="badge rounded-pill text-bg-dark mx-1" data-bs-toggle="modal" data-bs-target="#newVisitorModal"
-            i class="fa-solid fa-plus"
-            span Manage Visitor
+          - if dramalist.policies.can_edit
+            button type="button" class="badge rounded-pill text-bg-dark mx-1" data-bs-toggle="modal" data-bs-target="#newDramaModal"
+              i class="fa-solid fa-plus"
+              span Add New Drama
+            button type="button" class="badge rounded-pill text-bg-dark mx-1" data-bs-toggle="modal" data-bs-target="#newVisitorModal"
+              i class="fa-solid fa-plus"
+              span Manage Visitor
+          a class="badge rounded-pill text-bg-dark mx-1" href="/account/#{dramalist.owner.username}"
+            i class="fa-solid fa-circle-user"
+            span Auhtor: #{dramalist.owner.username}
+      
+          
         - dramalist.dramas.each do |drama|
           a class="drama-item-box text-decoration-none text-black" href="dramalists/#{dramalist.id}/dramas/#{drama.id}" 
             span class="m-2" #{drama.name}
