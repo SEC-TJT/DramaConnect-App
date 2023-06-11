@@ -18,9 +18,9 @@ module DramaConnect
           drama_info,policy = GetDrama.new(App.config).call(
               @current_account, list_id,drama_id
             )
-          puts "policy",policy
-          drama=Drama.new(drama_info);
-          puts drama.policies
+          drama=Drama.new(drama_info,policy)
+          puts @sharing=!drama.policies.can_edit
+          puts drama.policies.can_view
           view :drama,locals: {
               current_account: @current_account,
               drama:drama,
@@ -44,12 +44,12 @@ module DramaConnect
 
           # GET /dramalists/[list_id]
           routing.get do
+            puts 'current sharing:',@sharing
             list_info = GetDramas.new(App.config).call(
               @current_account, list_id
             )
-            puts "List Info is:",list_info
             dramalist = Dramalist.new(list_info)
-            puts "Dramalist's owner is:",dramalist.owner.username
+            @sharing=!dramalist.policies.can_edit
             accounts = GetAllAccounts.new(App.config).call(@current_account)
             view :dramalist, locals: { sharing: @sharing,
               current_account: @current_account, dramalist:, accounts:

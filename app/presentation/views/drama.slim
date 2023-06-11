@@ -9,7 +9,8 @@ div class="row h-100"
           div class="drama-title flex-grow-1 m-2" #{drama.name}
           p class="m-2 drama-tag" #{drama.updated_date} Update
           p class="m-2 drama-tag" #{drama.type}
-          div class="dropdown show m-2"
+          - if drama.policies.can_edit
+            div class="dropdown show m-2"
             button class="btn" type="button" id="editDrop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
               i class="fa-solid fa-list-ul"
             div class="dropdown-menu" aria-labelledby="#editDrop"
