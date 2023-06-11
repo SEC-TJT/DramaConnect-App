@@ -27,7 +27,7 @@ module DramaConnect
     end
 
     def process_policies(policies)
-      @policies = OpenStruct.new(policies)
+      @policies = OpenStruct.new(policies.to_h)
     end
 
     def process_dramas(dramas_info)
