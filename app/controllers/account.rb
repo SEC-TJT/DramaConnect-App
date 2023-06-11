@@ -19,6 +19,20 @@ module DramaConnect
           routing.redirect '/auth/login'
         end
 
+        # POST /assount/[username]
+        routing.post String do |username|
+          task = UpdateAccount.new(App.config).call(
+            current_account: @current_account,
+            username: username,
+            account_data: routing.params
+          )
+          flash[:notice] = task.to_h['message']
+        rescue StandardError
+          flash[:error] = 'Could not modify account data'
+        ensure
+          routing.redirect "/account/#{username}"
+        end
+
         # POST /account/<registration_token>
         routing.post String do |registration_token|
         passwords = Form::Passwords.new.call(routing.params)

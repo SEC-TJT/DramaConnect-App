@@ -17,6 +17,14 @@ module DramaConnect
       @account_info ? @account_info['attributes']['email'] : nil
     end
 
+    def avatar
+      @account_info ? @account_info['attributes']['avatar'] : nil
+    end
+
+    def description
+      @account_info ? @account_info['attributes']['description'] : nil
+    end
+
     def logged_out?
       @account_info.nil?
     end
