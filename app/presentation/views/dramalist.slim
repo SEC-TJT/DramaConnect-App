@@ -8,7 +8,7 @@ div class="row h-100"
         div class="d-flex w-100"
           div class="drama-title flex-grow-1 m-2" 
             span #{dramalist.name}
-            i class="fa-solid fa-share-nodes m-2"
+            / i class="fa-solid fa-share-nodes m-2"
           p class="m-2 drama-tag" #{dramalist.updated_date} Update
           p class="m-2 drama-tag" #{dramalist.dramas.length} Review(s)
           - if dramalist.policies.can_edit

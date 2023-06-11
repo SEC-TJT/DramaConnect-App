@@ -53,8 +53,9 @@
 .drama-tag {
     background-color: #E4D0D5;
     border-radius: 10px;
-    padding: 10px;
+    padding: 6px 10px;
     font-weight: bold;
+    font-size:0.8rem
 }
 
 .btn-common {
@@ -341,7 +342,7 @@
     width: 100%;
     height: 187px;
     overflow: hidden;
-    background: #000;
+    background: linear-gradient(180deg, #FFD9D9 0%, rgba(219, 251, 239, 0.53) 100%);
     border-radius: 8px;
 }
 .drama-picture img{
