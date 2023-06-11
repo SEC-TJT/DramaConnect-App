@@ -1,0 +1,18 @@
+div id="updateAccountModal" class="modal fade" role="dialog"
+  div class="modal-dialog"
+    div class="modal-content dialog-container"
+      div class="modal-header"
+        h4 class="text-black" Update Account
+        button type="button" data-bs-dismiss="modal" aria-label="Close" style="border: none !important;background-color:#fff;"
+          i class="fa-solid fa-circle-xmark fa-lg"
+      div class="modal-body"
+        form role="form" action="/account/#{account.username}" method='post' id='update-account-form'
+          div class="new-list-form-group"
+            label for="avatar_input" class="form-label m-1" Avatar
+            input type='text' name='avatar' id='avatar_input' class="form-control name-input" value="#{account.avatar}"
+            label for="description_input" class="form-label m-1" Description
+            textarea class="form-control m-1" id="description_input" rows="3" name="description" #{account.description}
+          button type='submit' id='update-account-submit' class='update' class="btn-common black-btn shadow-sm mt-3 w-100" 
+            i class="fa-regular fa-circle-up"
+            span class="ms-3" Updated Account
+

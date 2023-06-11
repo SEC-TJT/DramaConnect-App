@@ -1,12 +1,12 @@
 nav role="navigation" class="side-navbar nav-container"
   a href="/account/#{@current_account.username}"
-    div class="avator-box"
+    div class="avator-box" style="background-image: url('#{@current_account.avatar}')"
   - if @current_account
     div class="nav-title" 
       = "#{@current_account.username}"
     div class="nav-subtitle"
       = "#{@current_account.email}"
-  div class="nav-intro" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+  div class="nav-intro" #{@current_account.description}
   a class="btn-common white-btn shadow nav-btn d-flex justify-content-between align-items-center" href="/account/#{@current_account.username}"
     div Share Your Link
     i class="fa-solid fa-share-nodes"

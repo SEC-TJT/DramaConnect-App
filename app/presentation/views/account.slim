@@ -4,16 +4,19 @@ div class="row h-100"
   div class="col-8"
     == render :header, locals: { pre_route: '',sharing: ''  }
     div class="account-container"
-        div class="avator-box"
+        button type="button" class="menu-item d-flex align-items-center new-list-btn" data-bs-toggle="modal" data-bs-target="#updateAccountModal" style="width:100%"
+            i class="fa-solid fa-pen-to-square"
+            p class="m-2" Edit Account
+        div class="avator-box" style="background-image: url('#{account.avatar}')"
         div class="nav-title" #{account.username}
         div class="nav-subtitle" #{account.email}
         - if account.username == @current_account.username
-            div class="nav-intro" Lorem Ipsum 
+            div class="nav-intro" #{account.description}
             stong API Access:
             span
             = "(read-only key valid for one month)"
 
-            button class="btn btn-dark" type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' show
+            button class="btn black-btn" type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' show
             div id="exampleModal" class="modal fade" tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'
                 div class="modal-dialog modal-dialog-centered"
                     div class="modal-content"
@@ -24,5 +27,4 @@ div class="row h-100"
                             pre class="text-wrap" #{account.auth_token}
                         div class="modal-footer"
                             button class="btn btn-dark" type='button' data-bs-dismiss='modal' aria-label='Close' Close
-
-      
+include :account_update_partial
