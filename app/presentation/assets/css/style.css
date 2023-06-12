@@ -24,7 +24,8 @@
     display: flex;
     flex-wrap: wrap;
     margin: 10px 0px;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 800px;
     justify-content: center;
     align-content: center;
     border-radius: 10px;
@@ -190,7 +191,9 @@
     font-weight: bold;
     font-size: 2.2rem; 
     width: 100%;
+    display: block;
     margin-bottom: 0 !important;
+    overflow-wrap: break-word;
     line-height: 2.2rem;
     text-align: center;
 }
@@ -220,10 +223,11 @@
 }
 .footer{
     width: 100%;
-    background-color: #fff;
-    /* z-index: -10;
-    position: fixed; */
-    /* bottom: 0;
+    background-color: transparent;
+    /* background-color: #fff; */
+    /* z-index: 10;
+    position: fixed;
+    bottom: 0;
     left: 0;
     right: 0; */
 }
@@ -352,8 +356,11 @@
     vertical-align: middle;
 }
 p.review{
-    height: 50vh;
+    max-height: 40vh;
     overflow-y: auto;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-weight: 400;
 }
 button.dropdown{
     /* color: transparent ; */
@@ -372,4 +379,23 @@ button.dropdown{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+.update-icon{
+    background: linear-gradient(180deg, #FFD9D9 0%, #EAFFF7 100%);
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    font-size: 1.6rem;
+}
+i{
+    padding-right: 4px;
+}
+.show-in-top{
+    z-index: 100;
+    position: relative;
+}
+.lists-container{
+    max-height: 80vh;
+    overflow-y: scroll;
+    display: flex;
+    height: auto;
 }
