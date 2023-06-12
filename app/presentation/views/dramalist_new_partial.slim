@@ -9,10 +9,12 @@ div id="newDramaListModal" class="modal fade" role="dialog"
         form role="form" action="/dramalists" method='post' id='new-dramalist-form'
           div class="new-list-form-group"
             input type='text' name='name' id='name_input' class="form-control name-input" placeholder="Write Your DramaList Title Here"
-            label for="description_input" class="form-label m-1" Description
+            label for="description_input" class="form-label m-1" 
+              i class="fa-solid fa-quote-right"
+              span Description
             textarea class="form-control m-1" id="description_input" rows="3" name="description"
             input class="form-check-input black-outline-btn m-1" type="checkbox" value="" id="drama-list-is-public"
             label class="form-check-label ms-2" for="drama-list-is-public" Share As Public
           button type='submit' id='registration-form-submit' class='submit' value='submit' class="btn-common black-btn shadow-sm mt-3 w-100" 
-            i class="fa-solid fa-folder-closed"
+            i class="update-icon fa-solid fa-folder-closed"
             span class="ms-3" Add DramaList

@@ -1,15 +1,16 @@
 
-div class="w-90 d-flex flex-column justify-content-center align-items-center"
+div class="w-90 d-flex flex-column  justify-content-center align-items-center"
   == render :header, locals: { pre_route: '' ,sharing:}
-  - if dramalists.all.length==0
-    div class="shadow-sm drama-container w-100 .bg-secondary-subtle" style="height: 120px;"
-      p Drama list not found.
-  - unless dramalists.all.length==0
-    - dramalists.all.each do |dramalist|
-      div class="shadow-sm drama-container w-100"
-        a class="drama-link" href="/dramalists/#{dramalist.id}" 
-        / p #{dramalist}
-        div class="d-flex w-100"
-          div class="drama-title flex-grow-1 m-2" #{dramalist.name}
-          p class="m-2 drama-tag" #{dramalist.updated_date} Update
-        p class="m-2 w-100" #{dramalist.description}
+  div class="w-100 lists-container d-flex flex-column"
+    - if dramalists.all.length==0
+      div class="shadow-sm drama-container w-100 .bg-secondary-subtle" style="height: 120px;"
+        p Drama list not found.
+    - unless dramalists.all.length==0
+      - dramalists.all.each do |dramalist|
+        div class="shadow-sm drama-container w-100"
+          a class="drama-link" href="/dramalists/#{dramalist.id}" 
+          / p #{dramalist}
+          div class="d-flex w-100"
+            div class="drama-title flex-grow-1 m-2" #{dramalist.name}
+            p class="m-2 drama-tag" #{dramalist.updated_date} Update
+          p class="m-2 w-100" #{dramalist.description}
