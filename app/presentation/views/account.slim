@@ -4,14 +4,15 @@ div class="row h-100"
   div class="col-8"
     == render :header, locals: { pre_route: '',sharing: ''  }
     div class="account-container"
-        button type="button" class="menu-item d-flex align-items-center new-list-btn" data-bs-toggle="modal" data-bs-target="#updateAccountModal" style="width:100%"
-            i class="fa-solid fa-pen-to-square"
-            p class="m-2" Edit Account
+        - if account.username == @current_account.username
+            button type="button" class="menu-item d-flex align-items-center new-list-btn" data-bs-toggle="modal" data-bs-target="#updateAccountModal" style="width:100%"
+                i class="fa-solid fa-pen-to-square"
+                p class="m-2" Edit Account
         div class="avator-box" style="background-image: url('#{account.avatar}')"
         div class="nav-title" #{account.username}
         div class="nav-subtitle" #{account.email}
+        div class="nav-intro" #{account.description}
         - if account.username == @current_account.username
-            div class="nav-intro" #{account.description}
             stong API Access:
             span
             = "(read-only key valid for one month)"
