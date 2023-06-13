@@ -44,11 +44,13 @@ module DramaConnect
 
           # GET /dramalists/[list_id]
           routing.get do
-            puts 'current sharing:',@sharing
             list_info = GetDramas.new(App.config).call(
               @current_account, list_id
             )
+            puts "Relationship:",list_info['relationships']
+            puts "visitor:",list_info['relationships']['visitors']
             dramalist = Dramalist.new(list_info)
+            puts dramalist.visitors
             @sharing=!dramalist.policies.can_edit
             accounts = GetAllAccounts.new(App.config).call(@current_account)
             view :dramalist, locals: { sharing: @sharing,
@@ -64,6 +66,7 @@ module DramaConnect
           # POST /dramalists/[list_id]/visitors
           routing.post('visitors') do
             action = routing.params['action']
+            puts 'actions:',action
             visitors_info = Form::VisitorEmail.new.call(routing.params)
             if visitors_info.failure?
               flash[:error] = Form.validation_errors(visitors_info)

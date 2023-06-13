@@ -185,6 +185,31 @@
     background-position: center;
     background-size: cover;
 }
+.visitor-box {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 3px solid linear-gradient(180deg, #FFD9D9 0%, #DBFBEF 83%);
+    background-color: #FFD9D9;
+    background-image: linear-gradient(180deg, #FFD9D9 0%, #DBFBEF 83%);
+    background-position: center;
+    background-size: cover;
+}
+.visitor-row{
+    border-bottom: 1px solid #676767;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.visitor-data{
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+}
 .nav-title {
     margin: 10px;
     color: #000;
@@ -398,4 +423,9 @@ i{
     overflow-y: scroll;
     display: flex;
     height: auto;
+}
+.submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
