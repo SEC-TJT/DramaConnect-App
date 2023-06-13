@@ -31,12 +31,13 @@ div class="row h-100"
           span class="m-2" Rate: 
           i class="fa-solid fa-star"
           span class="m2" #{drama.rate} / 5.0 
-        - if drama.picture_url.nil?
-          div class="m-2 drama-bg w-100" style="height: 187px;"
-          / p class="m-2 w-100" #{drama.review}
-        - unless drama.picture_url.nil?
-          div class="w-100 drama-picture" style="height: 187px; "
-            img src="#{drama.picture_url}" alt="photo"
-        p class="m-2 review w-100" #{{drama.review.gsub("\n","<br/>")}}
+        div class="w-100 review"
+          - if drama.picture_url.nil?
+            div class="m-2 drama-bg w-100" style="height: 187px;"
+            / p class="m-2 w-100" #{drama.review}
+          - unless drama.picture_url.nil?
+            div class="w-100 drama-picture" 
+              img src="#{drama.picture_url}" alt="photo"
+          p class="m-2 w-100" #{{drama.review.gsub("\n","<br/>")}}
 include :drama_update_partial
       
