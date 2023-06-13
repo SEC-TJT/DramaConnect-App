@@ -24,6 +24,7 @@ module DramaConnect
 
       @owner = Account.new(relationships['owner'])
       @dramas = process_dramas(relationships['dramas'])
+      @visitors = process_visitors(relationships['visitors'])
     end
 
     def process_policies(policies)
@@ -34,6 +35,11 @@ module DramaConnect
       return nil unless dramas_info
 
       dramas_info.map { |doc_info| Drama.new(doc_info) }
+    end
+    def process_visitors(visitors_info)
+       return nil unless visitors_info
+       
+       visitors_info.map { |acc_info| Account.new(acc_info) }
     end
   end
 end

@@ -14,5 +14,17 @@ div id="newVisitorModal" class="modal fade" role="dialog"
               option selected Choose...
               - accounts.each do |account| 
                 option value="#{account["email"]}" #{account["username"]}
-          button type='submit' class="btn btn-primary submit" id='registration-form-submit' value='submit' Add
+          button type='submit' class="submit btn black-btn shadow-sm mt-3 w-100" id='registration-form-submit' value='submit' 
+            i class="update-icon fa-solid fa-plus"
+            span class="ms-3" Add
+        - dramalist.visitors.each do |visitor|
+          div class="visitor-row w-100 d-flex "
+            div class="visitor-data"
+              div class="visitor-box" style="background-image: url('#{visitor.avatar}')"
+              span #{visitor.username}
+            form role="form" action="/dramalists/#{dramalist.id}/visitors" method='post' id="remove-#{visitor.username}-visitor-form"
+              input type='hidden' name='action' value='remove' 
+              button type='submit' class="btn w-100" id='remove-#{visitor.username}-visitor-form' name='email' value="#{visitor.email}"
+                i class="fa-solid fa-trash"
+
 
