@@ -401,6 +401,15 @@
     white-space: pre-wrap;
     /* overflow-x: hidden; */
 }
+.review-title{
+    max-height: 65vh;
+    overflow-y: scroll;
+    color: rgb(64, 64, 64);
+    /* font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 2.11;
+    letter-spacing: 0.6px; */
+}
 p.description{
 
     padding: 12px;
